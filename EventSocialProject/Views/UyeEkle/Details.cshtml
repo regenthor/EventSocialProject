@@ -1,0 +1,67 @@
+﻿@model EventSocialProject.Models.DatabaseTables.Uye
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Account/Register.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Uye</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.uyeAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uyeAd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uyeSoyad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uyeSoyad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uyeDTarih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uyeDTarih)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uyeTel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uyeTel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uyeMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uyeMail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uyeSifre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uyeSifre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.uyeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

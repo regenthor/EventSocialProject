@@ -1,0 +1,200 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+@model EventSocialProject.Models.DatabaseTables.Etkinlik
+
+@{
+    ViewBag.Title = "EventPage";
+    
+}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="imagehover.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="upload/style.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js "></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,900,700,300|Montserrat:300,400,700">
+    <link href="css/main.css" rel="stylesheet" media="all">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="uploadjs/script.js"></script>
+
+    <script>
+
+        var textarea = document.querySelector('textarea');
+
+        textarea.addEventListener('keydown', autosize);
+
+        function autosize() {
+
+            var el = this;
+            var elh = $(this).outerHeight();
+
+            setTimeout(function () {
+                el.style.cssText = 'height:auto;';
+                // for box-sizing other than "content-box" use:
+                //el.style.cssText = '-moz-box-sizing:content-box';
+                el.style.cssText = 'height:' + el.scrollHeight + 'px;' + 'min-height:' + elh + 'px;';
+            }, 0);
+        }
+
+
+
+        function simpleSelect() {
+            "use strict";
+            var selectHolder,
+                selectClass;
+            //Setup
+            $('select').each(function () {
+                if (!$(this).attr('multiple')) {
+                    selectClass = $(this).attr('class');
+                    selectHolder = '<dl class="simpleSelect ' + selectClass + '">';
+                    selectHolder += '<dt>' + $('option', this).first().text() + '</dt><dd><ul>';
+                    $('option', this).each(function () {
+                        selectHolder += '<li data="' + $(this).val() + '">' + $(this).text() + '</li>';
+                    });
+                    selectHolder += '</ul></dd></dl>';
+                    $(this).after(selectHolder);
+                    $('.' + selectClass).wrapAll('<div class="selectContainer"></div>');
+                } else {
+                    $(this).show();
+                }
+            });
+            $('.simpleSelect dd ul li').on("click", function () {
+                $(this).parents().eq(3).find('select').val($(this).attr('data'));
+            });
+
+            $('.simpleSelect dt').on("click", function () {
+                if ($(this).next('dd').hasClass("open")) {
+                    $(this).removeClass("open").next('dd').removeClass("open");
+                }
+                else {
+                    $(this).addClass("open").next('dd').addClass("open");
+                }
+            });
+
+            $('.simpleSelect dd ul li').on("click", function () {
+                $(this).parents().eq(1).removeClass("open");
+                $(this).parents().eq(2).find('dt').removeClass("open");
+                $(this).parents().eq(4).find('dt').text($(this).text());
+            });
+        }
+        $(document).ready(simpleSelect);
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.image-upload-wrap').hide();
+
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
+
+                    $('.image-title').html(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            } else {
+                removeUpload();
+            }
+        }
+
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+        }
+        $('.image-upload-wrap').bind('dragover', function () {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function () {
+            $('.image-upload-wrap').removeClass('image-dropping');
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col text-center">
+                <a class="nav-link active deneme" href="anasayfa1.html">
+                    <i class="fa fa-2x fa-home"></i>
+                </a>
+            </div>
+            <div class="col text-center">
+                <a class="nav-link deneme" href="#">
+                    <i class="fa fa-2x fa-info-circle"></i>
+                </a>
+            </div>
+            <div class="col text-center">
+                <a class="nav-link deneme" href="add.html">
+                    <i class="fa fa-2x fa-plus"></i>
+                </a>
+            </div>
+            <div class="col text-center">
+                <a class="nav-link deneme" href="#">
+                    <i class="fa fa-2x fas fa-clipboard-list"></i>
+                </a>
+            </div>
+            <div class="col text-center">
+                <a class="nav-link deneme" href="#">
+                    <i class="fa fa-2x fa-sign-in-alt"></i>
+                </a>
+            </div>
+            <div class="col text-center">
+                <a class="nav-link active deneme" href="home.html">
+                    <i class="fa fa-2x fa-home"></i>
+                </a>
+            </div>
+        </div>
+        <div class="form-wrapper">
+
+            <div class="form">
+                <div class="header">
+                    <h1>Etkinlik Oluştur</h1>
+                    <p class="intro">Etkinlik formunu doldururken açıklamalara dikkat ediniz.</p>
+                </div>
+                <textarea class="message" placeholder="Etkinlik Başlığı" rows="1"></textarea>
+                <textarea class="message" placeholder="Etkinlik Açıklaması" rows="4"></textarea>
+                <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+                <div class="file-upload">
+                    <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Görsel Ekle</button>
+
+                    <div class="image-upload-wrap">
+                        <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                        <div class="drag-text">
+                            <h3>Görsellerinizi sürükleyerekte yükleyebilirsiniz</h3>
+                        </div>
+                    </div>
+                    <div class="file-upload-content">
+                        <img class="file-upload-image" src="#" alt="your image" />
+                        <div class="image-title-wrap">
+                            <button type="button" onclick="removeUpload()" class="remove-image">Sil <span class="image-title">Görsel Ekle</span></button>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="submit">
+                    <div class="inner">Etkinlik Oluştur.</div>
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
+
